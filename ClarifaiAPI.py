@@ -10,7 +10,21 @@ import streamlit as st
 from PIL import Image
 import pandas as pd
 
-st.title("Upload Image - jpg")
+st.title("NutriAid")
+
+st.header("Introducing NutriAid – your ultimate nutrition partner! "
+          "Whether you’re aiming to hit specific macros or sticking to a meal budget, "
+          "NutriAid has got you covered. Now you can Aid, you can plan, cook, and track your meals with ease, "
+          "ensuring that you always stay on track towards your health goals.")
+
+st.markdown("NutriAid is your ultimate solution for achieving your health goals with a healthy and balanced diet. "
+        "With NutriAid, all you need to do is take a photo of your ingredients and answer a few questions asked by "
+        "our AI-powered chatbot to get customized diet plans tailored to your specific dietary needs. "
+        "But NutriAid doesn’t stop there – it takes meal planning to the next level by providing macro tracking "
+        "and analysis of your daily food intake. Our chatbot helps you balance your macronutrients and "
+        "gives insights into your nutritional habits, so you can stay on track with your health goals without "
+        "having to spend hours searching for recipes. Say goodbye to boring meals and hello to a variety of tasty "
+        "and healthy dishes with NutriAid. Experience the future of food and nutrition right at your fingertips!")
 
 # 1) API Enter app key - COMMENTED OUT / NO NEED
 # st.header("Enter app key: ")
@@ -23,7 +37,7 @@ st.title("Upload Image - jpg")
 #     st.write("An app key has been uploaded")
 
 # 2) Input Files
-file_data = st.file_uploader("Upload Image", type=['jpg', 'jpeg'])
+file_data = st.file_uploader("Upload Image - jpg", type=['jpg', 'jpeg'])
 
 if file_data == None:
     st.warning("Error: No file detected")
