@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NutriAId</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .chatbot-container {
+            max-width: 500px;
+            margin: 50px auto;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            overflow: hidden;
+            background-color: #081932;
+        }
+
+        .chatbot-header {
+            background-color: #081932;
+            color: white;
+            padding: 10px;
+            font-size: 20px;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        .chatbot-body {
+            padding: 20px;
+            overflow-y: scroll;
+            height: 300px;
+            scrollbar-width: thin;
+        }
+
+        .chatbot-message {
+            margin-bottom: 10px;
+            padding: 10px;
+            border-radius: 5px;
+            word-wrap: break-word;
+        }
+
+        .chatbot-message-bot {
+            background-color: #000000;
+            color: white;
+            text-align: left;
+        }
+
+        .chatbot-message-user {
+            background-color: #007bff;
+            color: white;
+            text-align: right;
+        }
+
+        .chatbot-footer {
+            padding: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #f5f5f5;
+        }
+
+        .chatbot-input {
+            flex-grow: 1;
+            margin-right: 10px;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        .chatbot-button {
+            background-color: #081932;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 10px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="chatbot-container">
+        <div class="chatbot-header">
+            <span style="color: white">Nutri</span><span style="color: orange">Ai</span><span style="color: white">d</span>
+        </div>
+        <div class="chatbot-body" id="chatbot-body">
+            <div class="chatbot-message chatbot-message-bot">Hello! How can I help you?</div>
+        </div>
+        <div class="chatbot-footer">
+            <input type="text" class="chatbot-input" id="chatbot-input" placeholder="Type your message...">
+            <button class="chatbot-button" id="chatbot-send">Send</button>
+        </div>
+    </div>
+
+    <script>
+        const chatbotBody = document.getElementById("chatbot-body");
+        const chatbotInput = document.getElementById("chatbot-input");
+        const chatbotSendButton = document.getElementById("chatbot-send");
+
+        function addMessage(message, type) {
+            const messageElement = document.createElement("div");
+            messageElement.classList.add("chatbot-message", type === 'bot-message' ? "chatbot-message-bot" : "chatbot-message
+-message-user");
+            messageElement.textContent = message;
+            chatbotBody.appendChild(messageElement);
+            chatbotBody.scrollTop = chatbotBody.scrollHeight;
+        }
+
+        function sendMessageToChatGPTAPI(message) {
+            // use fetch API to send message to Chat GPT API
+            // replace API_ENDPOINT with your Chat GPT API endpoint
+            fetch('API_ENDPOINT', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    message: message
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                // receive response from Chat GPT API
+                const botMessage = data.message;
+                addMessage(botMessage, 'bot-message');
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        }
+
+        chatbotSendButton.addEventListener('click', () => {
+            const userMessage = chatbotInput.value.trim();
+            if (!userMessage) return;
+            addMessage(userMessage, 'user-message');
+            chatbotInput.value = '';
+
+            // send message to Chat GPT API and receive response after 1 second delay
+            setTimeout(() => {
+                sendMessageToChatGPTAPI(userMessage);
+            }, 1000);
+        });
+
+        chatbotInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                chatbotSendButton.click();
+            }
+        });
+    </script>
+</body>
+</html>
