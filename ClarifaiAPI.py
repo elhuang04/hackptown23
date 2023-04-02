@@ -10,8 +10,6 @@ import streamlit as st
 from PIL import Image
 import pandas as pd
 
-st.set_page_config(page_title="My Streamlit App", page_icon=":smiley:", layout="wide", initial_sidebar_state="expanded", background_color="#f8f9fa")
-
 st.title("Nutri:orange[Ai]d")
 
 st.header("Introducing Nutri:orange[Ai]d – your ultimate nutrition partner! "
