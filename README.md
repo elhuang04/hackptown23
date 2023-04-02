@@ -1,4 +1,3 @@
-hackptown23
 HackPrinceton '23: Food Recipe from Ingredient Scanning
 
 How to demo:
