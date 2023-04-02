@@ -46,7 +46,7 @@ st.markdown("Nutri:orange[Ai]d is your ultimate solution for achieving your heal
             "and healthy dishes with Nutri:orange[Ai]d. Experience the future of food and nutrition right at your fingertips!")
 
 # 2) Input Files
-file_data = st.file_uploader("Upload Image - jpg", type=['jpg', 'jpeg'])
+file_data = st.file_uploader("Upload Image - jpg", type=['jpg'])
 
 if file_data == None:
     st.warning("Error: No file detected")
