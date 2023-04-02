@@ -96,14 +96,15 @@ confidences = []
 
 for concept in response.outputs[0].data.concepts:
     # st.write("%12s: %.2f" % (concept.name, concept.value))
-    names.append(concept.name)
-    confidences.append(concept.value)
+    if concept.name != "no person":
+        names.append(concept.name)
+        confidences.append(concept.value)
 
-df = pd.DataFrame ({
-    "Concept Name":names,
-    "Model Confidence:":confidences
-})
-st.dataframe(df)
+# df = pd.DataFrame ({
+#     "Concept Name":names,
+#     "Model Confidence:":confidences
+# })
+# st.dataframe(df)
 
 # Keywords
 st.header("Keywords found:")
