@@ -64,7 +64,7 @@ stub = service_pb2_grpc.V2Stub(ClarifaiChannel.get_grpc_channel())
 from clarifai_grpc.grpc.api import service_pb2, resources_pb2
 from clarifai_grpc.grpc.api.status import status_code_pb2
 
-CLARIFAI_API_KEY = "be9e7f2af35d416a8247cac074e8927e"
+CLARIFAI_API_KEY = "EXPIRED"
 APPLICATION_ID = "streamlit-app"
 # SAMPLE_URL = "https://samples.clarifai.com/metro-north.jpg"
 
